@@ -65,13 +65,19 @@ div {
     text-decoration: none;
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
+    border-radius:25%;
 }
 /* Change the style of the Start Quiz and View Highscores button on hover */
 button {
     transition-duration: 0.4s;
+    border-radius: 50%;
 }
 
 button:hover {
     background-color: #4CAF50; /* Green */
     color: white;
   }
+
+.quiz-content {
+    display:none;
+}
