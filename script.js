@@ -23,18 +23,19 @@ var showHighscore = document.getElementById('highscores')
 var questions = [
   // question index 0
   {question:"What is an array?",
-  answer:"answer to question",
-  choices: ["other choice1", "other choice 2", "other choice 3", "answer"]},
+  answer:"answer",
+  choices: ["other choice", "other choice", "other choice", "answer"]},
   // question index 1
   {question:"How do you link a JS file?", 
   answer:"answer to question",
-  choices: ["other choice1", "other choice 2", "other choice 3"]}, 
+  choices: ["other choice", "answer", "other choice", "other choice"]}, 
   // question index 2 
   {question:"What does setAttribute method do?",
   answer:"answer to question",
-  choices: ["other choice1", "other choice 2", "other choice 3"]}]
+  choices: ["answer", "other choice", "other choice", "other choice"]}]
 // made our questions in to objects with key value pairs added other properties for the correct answer and the mult choice answer choices 
 // in each element of the array we have an object w 3 properties
+var next = 0
 
 startQuiz.addEventListener("click", init)
 function init() {
@@ -42,38 +43,54 @@ function init() {
 startContent.setAttribute("style", "display: none;")
 quizContent.setAttribute("style", "display:inline;")
 
-document.querySelector('.question').textContent = questions[0].question
-document.querySelector('.choice1').textContent = questions[0].choices[0]
-document.querySelector('.choice2').textContent = questions[0].choices[1]
-document.querySelector('.choice3').textContent = questions[0].choices[2]
-document.querySelector('.choice4').textContent = questions[0].choices[3]
-
-function countdown() {
-    var timeLeft = 74;
-    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-    var timeInterval = setInterval(function () {
-      // As long as the `timeLeft` is greater than 1
-      if (timeLeft > 1) {
-        // Set the `textContent` of `timerEl` to show the remaining seconds
-        timerEl.textContent = timeLeft + ' seconds remaining';
-        // Decrement `timeLeft` by 1
-        timeLeft--;
-      } else if (timeLeft === 1) {
-        // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-        timerEl.textContent = timeLeft + ' second remaining';
-        timeLeft--;
-      } else {
-        // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-        timerEl.textContent = '';
-        // Use `clearInterval()` to stop the timer
-        clearInterval(timeInterval);
-        // Call the `displayMessage()` function
-        displayMessage();
-      }
-    }, 1000);
-  }
+getQuestion();
 countdown();
 }
+
+var timeLeft = 74;
+function countdown() {
+  // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+  var timeInterval = setInterval(function () {
+    // As long as the `timeLeft` is greater than 1
+    if (timeLeft > 1) {
+      // Set the `textContent` of `timerEl` to show the remaining seconds
+      timerEl.textContent = timeLeft + ' seconds remaining';
+      // Decrement `timeLeft` by 1
+      timeLeft--;
+
+    } else if (timeLeft===1) {
+      timerEl.textContent = timeLeft + ' second remaining';
+      timeLeft--;
+    }
+    else if (timeLeft===0) {
+      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+      timerEl.textContent = "Time's Up!";
+      // Use `clearInterval()` to stop the timer
+      clearInterval(timeInterval);
+    }
+  }, 1000);
+}
+
+function getQuestion(){
+  var tempArray=questions[next]
+
+  document.querySelector('.question').textContent = tempArray.question
+  document.querySelector('.choice1').textContent = tempArray.choices[0]
+  document.querySelector('.choice2').textContent = tempArray.choices[1]
+  document.querySelector('.choice3').textContent = tempArray.choices[2]
+  document.querySelector('.choice4').textContent = tempArray.choices[3]
+
+  next++
+}
+
+document.querySelector('#next-question').addEventListener("click", function(){
+  if (next<questions.length){
+  getQuestion();
+  }
+  else {
+    // Final Score, Input Initials, View Highscores 
+  }
+})
 
 function gradeMessage(){
   var userChoice = this.textContent
@@ -82,6 +99,7 @@ function gradeMessage(){
   }
 else {
   document.querySelector('.grade-message').textContent="Wrong!"
+  timeLeft -=5
 }}
 
 // var answerButtons = document.querySelectorAll('choice')
@@ -89,7 +107,9 @@ document.querySelector('.choice1').addEventListener("click", gradeMessage)
 document.querySelector('.choice2').addEventListener("click", gradeMessage)
 document.querySelector('.choice3').addEventListener("click", gradeMessage)
 document.querySelector('.choice4').addEventListener("click", gradeMessage)
+// figure out how to tell it what the correct answer is! the answer wording has to match the string in the answer property exactly 
 
-// figure out how to tell it what the correct anser is! 
+
+
 
 

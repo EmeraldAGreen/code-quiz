@@ -11,7 +11,7 @@
 
 <body>
     <nav>
-        <button id="highscores">View Highscores</button>
+        <button id="highscores" class="button">View Highscores</button>
         <span id="timer">75 seconds remaining</span>
     </nav>
     <main class="start-content">
@@ -21,17 +21,28 @@
         answers will penalize your score/time by ten seconds!
         </p>
         <div>
-            <button id="start-quiz">Start Quiz</button>
+            <button id="start-quiz" class="button">Start Quiz</button>
         </div>
     </main>
     <section class="quiz-content">
         <p class="question"></p>
-        <button class="choice1 choice"></button>
-        <button class="choice2 choice"></button>
-        <button class="choice3 choice"></button>
-        <button class="choice4 choice"></button>
-    </section>
+        <p class="answer-choices">
+            <button class="choice1 choice"></button>
+            <button class="choice2 choice"></button>
+            <button class="choice3 choice"></button>
+            <button class="choice4 choice"></button>
+        </p>
     <section class="grade-message"></section>
+    <button id="next-question" class="button">Next Question</button>
+    </section>
+    <section class="final-score">
+        <h1>All Done!</h1>
+        <p> Your score is <span id=#score-count></span></p>
+        <label for="initials">Type Your Initials Here:</label>
+            <input type="text" id="user-initials" name="initials">
+    </section>
+
+
     <script src ="./script.js"></script>
 </body>
 

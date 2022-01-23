@@ -36,7 +36,7 @@ div {
     align-items: center;
 }
 
-/* Styles the appearance of the buttons */
+/* Styles the appearance of the buttons for Start Quiz and View Highscores*/
 #start-quiz {
     background-color: #4CAF50; 
     border:solid black;
@@ -57,6 +57,7 @@ div {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Styles the appearance of the timerEl */
 #timer {
     background-color: #dee200; 
     border:solid black;
@@ -68,16 +69,52 @@ div {
     border-radius:25%;
 }
 /* Change the style of the Start Quiz and View Highscores button on hover */
-button {
+.button{
     transition-duration: 0.4s;
     border-radius: 50%;
 }
 
-button:hover {
-    background-color: #4CAF50; /* Green */
+.button:hover {
+    background-color: #4CAF50; 
     color: white;
   }
 
+/* Hide the Quiz on load */
 .quiz-content {
     display:none;
+}
+
+.answer-choices {
+    display:flex;
+    flex-direction: column;
+    align-content:space-between;
+}
+/* Styles the buttons for the answer choices */
+.choice {
+    background-color:#B04C78; 
+    border:solid black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    margin: 15px 15px 15px 15px 
+}
+/* Styles the Correct or Incorrect grade-message */
+.grade-message {
+    font-size: 30px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Styles the Next Question Button  */
+#next-question {
+    margin: 0% 10% 0% 75%;
+    background-color: #4CAF50; 
+    border:solid black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
