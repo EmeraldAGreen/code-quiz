@@ -13,10 +13,10 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
 5. display leaderboard with button options to go back (reload initial webpage w saved highscores) or clear highscores (clear leaderboard then return to inital load)
-**Every button has a .on hover
 */
 var startContent = document.querySelector('.start-content')
 var quizContent = document.querySelector('.quiz-content')
+var scoreContent = document.querySelector('.final-score')
 var startQuiz = document.getElementById('start-quiz')
 var timerEl = document.getElementById('timer')
 var showHighscore = document.getElementById('highscores')
@@ -82,33 +82,36 @@ function getQuestion(){
 
   next++
 }
+var buttonClick=false
 
 document.querySelector('#next-question').addEventListener("click", function(){
-  if (next<questions.length){
+  if (buttonClick===false) {
+    return;
+  } else if (next<questions.length){
   getQuestion();
   }
   else {
-    // Final Score, Input Initials, View Highscores 
+    // Final Score, Input Initials, View Highscores
+    scoreContent.setAttribute("style", "display:block;")
+    quizContent.setAttribute("style", "display:none;")
   }
+  buttonClick=false
 })
 
 function gradeMessage(){
   var userChoice = this.textContent
+  buttonClick = true
   if (userChoice===questions[0].answer) {
   document.querySelector('.grade-message').textContent="Correct!"
-  }
-else {
-  document.querySelector('.grade-message').textContent="Wrong!"
-  timeLeft -=5
-}}
-
+  } else {document.querySelector('.grade-message').textContent="Wrong!"
+  timeLeft -=5}
+}
 // var answerButtons = document.querySelectorAll('choice')
 document.querySelector('.choice1').addEventListener("click", gradeMessage)
 document.querySelector('.choice2').addEventListener("click", gradeMessage)
 document.querySelector('.choice3').addEventListener("click", gradeMessage)
 document.querySelector('.choice4').addEventListener("click", gradeMessage)
 // figure out how to tell it what the correct answer is! the answer wording has to match the string in the answer property exactly 
-
 
 
 
