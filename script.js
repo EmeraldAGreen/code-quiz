@@ -79,7 +79,7 @@ getQuestion();
 countdown();
 }
 
-var timeLeft = 74;
+var timeLeft = 4;
 function countdown() {
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
