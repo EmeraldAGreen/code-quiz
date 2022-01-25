@@ -22,20 +22,52 @@ var timerEl = document.getElementById('timer')
 var showHighscore = document.getElementById('highscores')
 var questions = [
   // question index 0
-  {question:"What is an array?",
-  answer:"answer",
-  choices: ["other choice", "other choice", "other choice", "answer"]},
+  {question:"What is the primary statement used to exit a Javascript function?",
+  answer:"return",
+  choices: ["break", "throw", "try and catch", "return"]},
   // question index 1
-  {question:"How do you link a JS file?", 
-  answer:"answer to question",
-  choices: ["other choice", "answer", "other choice", "other choice"]}, 
+  {question:"When you set the flex-direction to column, the justify-content property of the flexbox uses the ____ axis.", 
+  answer:"vertical",
+  choices: ["horizontal", "vertical", "z", "y"]}, 
   // question index 2 
-  {question:"What does setAttribute method do?",
-  answer:"answer to question",
-  choices: ["answer", "other choice", "other choice", "other choice"]}]
+  {question:"Which of the following is NOT a way to manipulate files and folders in terminal?",
+  answer:"cd",
+  choices: ["cd", "touch", "mkdir", "cp"]},
+  // question index 3
+  {question:"What selector can be used with pseudo-elements to change the appearance of an element when the user is pressing down on it? (e.g. the color of a button changes when you click on it)",
+  answer:"element:active",
+  choices: ["element:click", "element:focus", "element:active", "element:hover"]},
+  // question index 4
+  {question:"Choose the variable name that's written in camal case.",
+  answer:"variableName",
+  choices: ["variable-name", "VariableName", "<variable-name>", "variableName"]},
+  // question index 5
+  {question:"Which of the following is NOT a component of a CSS media query?",
+  answer:"Javascript method",
+  choices: ["media type", "Javascript method", "media feature expression", "logical operators"]},
+  // question index 6
+  {question:"What is data that is NOT an object and has NO methods?",
+  answer:"primitive data type",
+  choices: ["logical comparison operator", "arithmetic operator", "primitive data type", "conditional operator"]},
+  // question index 7
+  {question:"How do we interact with HTML and CSS using JS?",
+  answer:"DOM",
+  choices: ["DOM", "API", "localStorage", "JSON"]},
+  // question index 8 
+  {question:"What array method returns a new array containing the results of calling a function on every element in the array?",
+  answer:"map",
+  choices: ["push", "pop", "filter", "map"]},
+  // question index 9 
+  {question:"What is correct JavaScript file structure?",
+  answer:"variables, functions, special functions (e.g. event listeners), logic",
+  choices: ["logic, functions, variables, special functions (e.g. event listeners)", "variables, functions, special functions (e.g. event listeners), logic", "variables, logic, functions, special functions(e.g. event listeners)", "logic, special functions(e.g. event listeners), functions, variables"]}]
+  
 // made our questions in to objects with key value pairs added other properties for the correct answer and the mult choice answer choices 
 // in each element of the array we have an object w 3 properties
 var next = 0
+var currentQuestion = 0
+var correctAnswers = 0
+// var scoreCount = document.getElementById("score-count")
 
 startQuiz.addEventListener("click", init)
 function init() {
@@ -67,13 +99,15 @@ function countdown() {
       timerEl.textContent = "Time's Up!";
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
+      scoreContent.setAttribute("style", "display:block;")
+      quizContent.setAttribute("style", "display:none;")
     }
   }, 1000);
 }
 
 function getQuestion(){
   var tempArray=questions[next]
-
+  console.log(questions[next])
   document.querySelector('.question').textContent = tempArray.question
   document.querySelector('.choice1').textContent = tempArray.choices[0]
   document.querySelector('.choice2').textContent = tempArray.choices[1]
@@ -81,7 +115,23 @@ function getQuestion(){
   document.querySelector('.choice4').textContent = tempArray.choices[3]
 
   next++
+  currentQuestion++
+  console.log(currentQuestion)
 }
+
+function gradeMessage(){
+  var userChoice = this.textContent
+  console.log(this.textContent)
+  buttonClick = true
+  console.log(questions[currentQuestion-1].answer)
+  if (userChoice===questions[currentQuestion-1].answer){
+    document.querySelector('.grade-message').textContent="Correct!"
+    correctAnswers++
+    console.log(correctAnswers)
+  } else {document.querySelector('.grade-message').textContent="Wrong!"
+      timeLeft -=5}
+  }
+
 var buttonClick=false
 
 document.querySelector('#next-question').addEventListener("click", function(){
@@ -91,27 +141,24 @@ document.querySelector('#next-question').addEventListener("click", function(){
   getQuestion();
   }
   else {
+    var finalScore = correctAnswers*10
     // Final Score, Input Initials, View Highscores
     scoreContent.setAttribute("style", "display:block;")
     quizContent.setAttribute("style", "display:none;")
+    document.querySelector('#score-count').textContent=finalScore
+    console.log(finalScore)
   }
   buttonClick=false
 })
 
-function gradeMessage(){
-  var userChoice = this.textContent
-  buttonClick = true
-  if (userChoice===questions[0].answer) {
-  document.querySelector('.grade-message').textContent="Correct!"
-  } else {document.querySelector('.grade-message').textContent="Wrong!"
-  timeLeft -=5}
-}
-// var answerButtons = document.querySelectorAll('choice')
+
+
+
 document.querySelector('.choice1').addEventListener("click", gradeMessage)
 document.querySelector('.choice2').addEventListener("click", gradeMessage)
 document.querySelector('.choice3').addEventListener("click", gradeMessage)
 document.querySelector('.choice4').addEventListener("click", gradeMessage)
-// figure out how to tell it what the correct answer is! the answer wording has to match the string in the answer property exactly 
+
 
 
 
