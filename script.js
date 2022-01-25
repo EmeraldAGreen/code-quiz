@@ -164,26 +164,6 @@ document.querySelector('.choice2').addEventListener("click", gradeMessage)
 document.querySelector('.choice3').addEventListener("click", gradeMessage)
 document.querySelector('.choice4').addEventListener("click", gradeMessage)
 
-// highscoreInfo = localStorage.getItem("finalScore", JSON.stringify(finalScore)
-    // populate the highscoreInfo array with the console logged scores 
-    
-    // 
-    
-// function storeInitials() {
-//     let initValue = initialsEl.value.trim();
-//     if (initValue) {
-//         let userScore = { username: initValue, userScore: score };
-//         initialsEl.value = '';
-//         highScores = JSON.parse(localStorage.getItem("scores")) || [];
-//         highScores.push(userScore)
-//         localStorage.setItem("scores", JSON.stringify(highScores));
-//         hide(inputScoreEl);
-//         renderHighScores();
-//         reset();
-//     }
-
-// submitInitialsBtnEl.addEventListener("click", storeInitials)
-
 viewHighscoresButton.addEventListener("click", showLeaderboard)
 
 function showLeaderboard() {
@@ -192,4 +172,29 @@ function showLeaderboard() {
   leaderboardEl.setAttribute("style", "display:block;")
   goBackButton.setAttribute("style", "display:block;")
   clearScoresButton.setAttribute("style", "display:block;")
+}
+
+ 
+goBackButton.addEventListener("click", function () {
+  leaderboardEl.setAttribute("style", "display: none;");
+  startContent.setAttribute("style", "display: block;");
+})
+
+clearScoresButton.addEventListener("click", function () {
+  highScores = [];
+  localStorage.setItem("finalScore", JSON.stringify(highScores));
+  console.log(highScores)
+});
+
+
+submitInitialsBtnEl.addEventListener("click", storeInitials)
+
+function storeInitials() {
+  if (initialsEl) {
+    let userScore = {username: initialsEl, userScore: finalScore};
+    initialsEl=''
+    highScores = JSON.parse(localStorage.getItem("finalScore")) || [];
+    highScores.push(userScore)
+    localStorage.setItem("finalScore", JSON.stringify(highScores))
+  }
 }
