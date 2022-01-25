@@ -19,7 +19,11 @@ var quizContent = document.querySelector('.quiz-content')
 var scoreContent = document.querySelector('.final-score')
 var startQuiz = document.getElementById('start-quiz')
 var timerEl = document.getElementById('timer')
-var showHighscore = document.getElementById('highscores')
+var viewHighscoresButton = document.getElementById('highscores')
+var leaderboardEl = document.querySelector('.leaderboard')
+var leaderboardScoresEl = document.querySelector('#scores')
+var goBackButton = document.querySelector('#go-back')
+var clearScoresButton = document.querySelector('#clear-scores')
 var questions = [
   // question index 0
   {question:"What is the primary statement used to exit a Javascript function?",
@@ -67,7 +71,10 @@ var questions = [
 var next = 0
 var currentQuestion = 0
 var correctAnswers = 0
-// var scoreCount = document.getElementById("score-count")
+const initialsEl = document.querySelector("#user-initials");
+const submitInitialsBtnEl = document.querySelector("#submit-initials");
+const userScoreEl = document.querySelector("#score-count");
+
 
 startQuiz.addEventListener("click", init)
 function init() {
@@ -79,7 +86,7 @@ getQuestion();
 countdown();
 }
 
-var timeLeft = 4;
+var timeLeft = 74;
 function countdown() {
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
@@ -147,19 +154,42 @@ document.querySelector('#next-question').addEventListener("click", function(){
     quizContent.setAttribute("style", "display:none;")
     document.querySelector('#score-count').textContent=finalScore
     console.log(finalScore)
+    localStorage.setItem(finalScore, "")
   }
   buttonClick=false
 })
-
-
-
 
 document.querySelector('.choice1').addEventListener("click", gradeMessage)
 document.querySelector('.choice2').addEventListener("click", gradeMessage)
 document.querySelector('.choice3').addEventListener("click", gradeMessage)
 document.querySelector('.choice4').addEventListener("click", gradeMessage)
 
+// highscoreInfo = localStorage.getItem("finalScore", JSON.stringify(finalScore)
+    // populate the highscoreInfo array with the console logged scores 
+    
+    // 
+    
+// function storeInitials() {
+//     let initValue = initialsEl.value.trim();
+//     if (initValue) {
+//         let userScore = { username: initValue, userScore: score };
+//         initialsEl.value = '';
+//         highScores = JSON.parse(localStorage.getItem("scores")) || [];
+//         highScores.push(userScore)
+//         localStorage.setItem("scores", JSON.stringify(highScores));
+//         hide(inputScoreEl);
+//         renderHighScores();
+//         reset();
+//     }
 
+// submitInitialsBtnEl.addEventListener("click", storeInitials)
 
+viewHighscoresButton.addEventListener("click", showLeaderboard)
 
-
+function showLeaderboard() {
+  scoreContent.setAttribute("style", "display:none;")
+  quizContent.setAttribute("style", "display:none;")
+  leaderboardEl.setAttribute("style", "display:block;")
+  goBackButton.setAttribute("style", "display:block;")
+  clearScoresButton.setAttribute("style", "display:block;")
+}

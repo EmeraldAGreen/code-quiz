@@ -38,11 +38,16 @@
     <section class="final-score">
         <h1>All Done!</h1>
         <p> Your score is <span id="score-count"></span></p>
-        <label class= "label" for="initials">Type Your Initials Here:</label>
-            <input type="text" id="user-initials" name="initials">
-
+        <p class= "label">Type Your Initials Here: <input type="text" id="user-initials" name="initials"></p>
+        <button type="button" class="button" id="submit-initials">Submit</button>
     </section>
 
+    <div class="leaderboard">
+        <h1>Highscores</h1>
+        <p id="scores"> </p>
+        <button class="button" id="go-back">Go Back</button>
+        <button class="button" id="clear-scores">Clear Scores</button>
+    </div>
 
     <script src ="./script.js"></script>
 </body>
