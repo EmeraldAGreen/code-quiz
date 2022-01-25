@@ -169,6 +169,7 @@ viewHighscoresButton.addEventListener("click", showLeaderboard)
 function showLeaderboard() {
   scoreContent.setAttribute("style", "display:none;")
   quizContent.setAttribute("style", "display:none;")
+  startContent.setAttribute("style", "display:none;");
   leaderboardEl.setAttribute("style", "display:block;")
   goBackButton.setAttribute("style", "display:block;")
   clearScoresButton.setAttribute("style", "display:block;")
@@ -180,21 +181,21 @@ goBackButton.addEventListener("click", function () {
   startContent.setAttribute("style", "display: block;");
 })
 
-clearScoresButton.addEventListener("click", function () {
-  highScores = [];
-  localStorage.setItem("finalScore", JSON.stringify(highScores));
-  console.log(highScores)
-});
+// clearScoresButton.addEventListener("click", function () {
+//   highScores = [];
+//   localStorage.setItem("finalScore", JSON.stringify(highScores));
+//   console.log(highScores)
+// });
 
 
-submitInitialsBtnEl.addEventListener("click", storeInitials)
+// submitInitialsBtnEl.addEventListener("click", storeInitials)
 
-function storeInitials() {
-  if (initialsEl) {
-    let userScore = {username: initialsEl, userScore: finalScore};
-    initialsEl=''
-    highScores = JSON.parse(localStorage.getItem("finalScore")) || [];
-    highScores.push(userScore)
-    localStorage.setItem("finalScore", JSON.stringify(highScores))
-  }
-}
+// function storeInitials() {
+//   if (initialsEl) {
+//     let userScore = {username: initialsEl, userScore: finalScore};
+//     initialsEl=''
+//     highScores = JSON.parse(localStorage.getItem("finalScore")) || [];
+//     highScores.push(userScore)
+//     localStorage.setItem("finalScore", JSON.stringify(highScores))
+//   }
+// }
