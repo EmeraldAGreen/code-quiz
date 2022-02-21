@@ -19,3 +19,7 @@ Highscores Page
 
 ## Deployed Application
  https://emeraldagreen.github.io/code-quiz/ 
+ 
+## Contact Me
+Email: emeraldthedeveloper@gmail.com
+LinkedIn: https://www.linkedin.com/in/emeraldarielgreen/
